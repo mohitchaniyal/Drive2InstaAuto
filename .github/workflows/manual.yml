@@ -30,10 +30,15 @@ jobs:
           DAY: ${{ vars.DAY }}
           # AGENCIES: ${{ vars.AGENCIES }}
       # run: echo "${{ vars.URL }} ${{ vars.MARKETS }}. Today is ${{ vars.AGENCIES }}!"
-      run: |
-        echo ${{vars.COOKIE}} >> insta.json
-        cat insta.json
-        python main.py
+    - name: create-json
+      id: create-json
+      uses: jsdaniell/create-json@v1.2.2
+      with:
+        name: "insta.json"
+        json: ${{ secrets.COOKIE }}
+        dir: "."
+        run:
+          python main.py
     # - name: Commit files
     #   run: |
     #     git config --local user.email ${{ secrets.GIT_EMAIL }}
