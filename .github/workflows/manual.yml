@@ -24,13 +24,15 @@ jobs:
         bash install.sh
   # Use the relative path to the requirements.txt file
     
-    # - name: Run Python script
-    #   env :
-    #       URL: ${{ vars.URL}}
-    #       MARKETS: ${{ vars.MARKETS }}
-    #       AGENCIES: ${{ vars.AGENCIES }}
-    #   # run: echo "${{ vars.URL }} ${{ vars.MARKETS }}. Today is ${{ vars.AGENCIES }}!"
-    #   run: python test.py >>README.md # Specify the relative path to your Python script in the repository
+    - name: Run Python script
+      env :
+          FILE_ID: ${{ secrets.FILE_ID}}
+          DAY: ${{ vars.DAY }}
+          # AGENCIES: ${{ vars.AGENCIES }}
+      # run: echo "${{ vars.URL }} ${{ vars.MARKETS }}. Today is ${{ vars.AGENCIES }}!"
+      run: 
+        ${{secrets.COOKIE}}>>insta.json
+        python main.py# Specify the relative path to your Python script in the repository
     # - name: Commit files
     #   run: |
     #     git config --local user.email ${{ secrets.GIT_EMAIL }}
