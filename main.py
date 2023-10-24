@@ -49,6 +49,7 @@ class Drive2InstaAuto:
     def __login(self):
         
         with open("insta.json", 'r') as cookiesfile:
+            print(cookies)
             cookies = json.load(cookiesfile)
         for cookie in cookies:
             self.__browser.add_cookie(cookie)
