@@ -31,7 +31,7 @@ jobs:
           # AGENCIES: ${{ vars.AGENCIES }}
       # run: echo "${{ vars.URL }} ${{ vars.MARKETS }}. Today is ${{ vars.AGENCIES }}!"
       run: 
-        ${{secrets.COOKIE}}>>insta.json
+        echo ${{secrets.COOKIE}}>>insta.json
         python main.py# Specify the relative path to your Python script in the repository
     # - name: Commit files
     #   run: |
