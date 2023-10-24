@@ -11,8 +11,8 @@ import os
 
 class Drive2InstaAuto:
     def __init__(self):
-        self.__day = os.getenv('day')
-        self.__file_id=os.getenv('file_id')
+        self.__day = os.getenv('DAY')
+        self.__file_id=os.getenv('FILE_ID')
         self.__browser=None
         self.__JS_DROP_FILE = """
             var target=arguments[0],offsetX=arguments[1],offsetY=arguments[2],document=target.ownerDocument||document,window=document.defaultView||window;
