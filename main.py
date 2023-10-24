@@ -22,7 +22,7 @@ class Drive2InstaAuto:
             document.body.appendChild(input);return input;
         """
         self.__file_path="doggo.mp4"
-        self.__day=datetime.today().date()-datetime.strptime(self.__date,"%d-%m-%Y").date()
+        self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
         
         
     def __get_file(self):
