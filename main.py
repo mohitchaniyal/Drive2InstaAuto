@@ -7,10 +7,13 @@ import time
 import json
 from datetime import datetime
 import requests
+import os
 
-date="22-10-2023"
 class Drive2InstaAuto:
-    def __init__(self,day):
+    def __init__(self):
+        self.__day = os.getenv('day')
+        self.__file_id=os.getenv('file_id')
+        self.__markets=os.getenv('MARKETS').split(",")
         self.__browser=None
         self.__JS_DROP_FILE = """
             var target=arguments[0],offsetX=arguments[1],offsetY=arguments[2],document=target.ownerDocument||document,window=document.defaultView||window;
@@ -20,7 +23,8 @@ class Drive2InstaAuto:
             document.body.appendChild(input);return input;
         """
         self.__file_path="doggo.mp4"
-        self.__day=datetime.today().date()-datetime.strptime(date,"%d-%m-%Y").date()
+        self.__day=datetime.today().date()-datetime.strptime(self.__date,"%d-%m-%Y").date()
+        
         
     def __get_file(self):
         URL = f"https://drive.google.com/uc?id={file_id}"
@@ -30,7 +34,7 @@ class Drive2InstaAuto:
 
     def __initialize_browser(self):
         url='https://www.instagram.com/'
-        driver_path = 'ChromeDriver/chromedriver-win64/chromedriver'
+        driver_path = 'chromedriver-linux64/chromedriver'
         chrome_options = ChromeOptions()
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--headless=new")
