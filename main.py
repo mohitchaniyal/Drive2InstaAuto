@@ -89,5 +89,7 @@ class Drive2InstaAuto:
     def pipeline_handler(cls):
         cls(date)._start_uploding_file()
         return {"success":True}
-Drive2InstaAuto.pipeline_handler()
+        
+if __name__=="__main__": 
+    Drive2InstaAuto.pipeline_handler()
     
