@@ -32,6 +32,7 @@ jobs:
       # run: echo "${{ vars.URL }} ${{ vars.MARKETS }}. Today is ${{ vars.AGENCIES }}!"
       run: |
         echo ${{secrets.COOKIE}} >> insta.json
+        cat insta.json
         python main.py
     # - name: Commit files
     #   run: |
