@@ -50,7 +50,6 @@ class Drive2InstaAuto:
         
         with open("insta.json", 'r') as cookiesfile:
             cookies = json.load(cookiesfile)
-        print(cookies)
         for cookie in cookies:
             self.__browser.add_cookie(cookie)
         self.__browser.get("https://www.instagram.com/")
