@@ -22,7 +22,7 @@ jobs:
     
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        bash install.sh
         
     - name: create-json
       id: create-json
