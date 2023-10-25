@@ -1,0 +1,52 @@
+name: Test WorkFlowe
+
+on:
+  # schedule:
+  #   - cron: '*/5 * * * *'  # Set your desired cron schedule here to run every 5 minutes
+  workflow_dispatch:  # Enable the workflow to be manually triggered
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+        
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'  # Choose the Python version you want to use
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Install dependencies
+      run: |
+        bash install.sh
+  # Use the relative path to the requirements.txt file
+    
+    - name: Run Python script
+      env :
+          FILE_ID: ${{ secrets.FILE_ID}}
+          DAY: ${{ vars.DAY }}
+          # AGENCIES: ${{ vars.AGENCIES }}
+      # run: echo "${{ vars.URL }} ${{ vars.MARKETS }}. Today is ${{ vars.AGENCIES }}!"
+    - name: create-json
+      id: create-json
+      uses: jsdaniell/create-json@v1.2.2
+      with:
+        name: "insta.json"
+        json: ${{ secrets.COOKIE }}
+        dir: "."
+        run:
+          python main.py
+    # - name: Commit files
+    #   run: |
+    #     git config --local user.email ${{ secrets.GIT_EMAIL }}
+    #     git config --local user.name ${{ secrets.GIT_NAME }}
+    #     git commit -am "Updated Proxies"
+    # - name: Push changes
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #   env:
+    #     CI: true
