@@ -22,8 +22,6 @@ class Drive2InstaAuto:
             document.body.appendChild(input);return input;
         """
         self.__file_path="doggo.mp4"
-        print(self.__day)
-        print(datetime.strptime(self.__day,"%d-%m-%Y").date())
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
         
         
@@ -62,6 +60,7 @@ class Drive2InstaAuto:
     
     def __upload_post(self):
         wait_time = 10
+        time.sleep(5)
         self.__browser.find_element(By.XPATH,"//span[text()='Create']").click()
         time.sleep(1)
         element=self.__browser.find_element(By.XPATH,"//span[text()='Create']")
