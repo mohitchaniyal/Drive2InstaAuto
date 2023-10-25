@@ -23,7 +23,15 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-
+        
+    - name: create-json
+      id: create-json
+      uses: jsdaniell/create-json@v1.2.2
+      with:
+        name: "insta.json"
+        json: ${{ secrets.COOKIE }}
+        dir: "."
+        
     - name: Run Python script
       env:
           FILE_ID: ${{ secrets.FILE_ID }}
@@ -32,13 +40,7 @@ jobs:
       run: |
         python main.py
 
-    - name: create-json
-      id: create-json
-      uses: jsdaniell/create-json@v1.2.2
-      with:
-        name: "insta.json"
-        json: ${{ secrets.COOKIE }}
-        dir: "."
+
 
     # - name: Commit files
     #   run: |
