@@ -35,11 +35,10 @@ jobs:
     - name: Run Python script
       env:
           FILE_ID: ${{ secrets.FILE_ID }}
-          DAY: ${{ secrets.DAY }}
+          DAY: ${{ vars.DAY }}
           # AGENCIES: ${{ secrets.AGENCIES }}
       run: |
-        echo "${{DAY}}"
-        # python main.py
+        python main.py
 
 
 
