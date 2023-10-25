@@ -38,7 +38,8 @@ jobs:
           DAY: ${{ secrets.DAY }}
           # AGENCIES: ${{ secrets.AGENCIES }}
       run: |
-        python main.py
+        echo "${{DAY}}"
+        # python main.py
 
 
 
