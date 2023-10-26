@@ -8,6 +8,10 @@ import json
 from datetime import datetime
 import requests
 import os
+from pyvirtualdisplay import Display
+display = Display(visible=0, size=(1920, 1200))  
+display.start()
+
 
 class Drive2InstaAuto:
     def __init__(self):
@@ -35,10 +39,20 @@ class Drive2InstaAuto:
         url='https://www.instagram.com/'
         driver_path = 'chromedriver-linux64/chromedriver'
         chrome_options = ChromeOptions()
-        chrome_options.add_argument("--window-size=1920,1080")
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--no-sandbox")
+        # chrome_options.add_argument("--window-size=1920,1080")
+        # chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--disable-gpu")
+        # chrome_options.add_argument("--no-sandbox")
+        options = [ "--ignore-certificate-errors",
+                	"--headless",
+                    "--disable-gpu",
+                    "--window-size=1920,1200",
+                    "--disable-extensions",
+                    "--no-sandbox",
+                    "--disable-dev-shm-usage"]
+                    #'--remote-debugging-port=9222']
+        for option in options:
+            chrome_options.add_argument(option)
         browser = Chrome(service=Service(driver_path),options=chrome_options)
         browser.implicitly_wait(5)
         browser.get(url)
