@@ -36,7 +36,7 @@ class Drive2InstaAuto:
         driver_path = 'chromedriver-linux64/chromedriver'
         chrome_options = ChromeOptions()
         chrome_options.add_argument("--window-size=1920,1080")
-        chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")
         browser = Chrome(service=Service(driver_path),options=chrome_options)
