@@ -1,8 +1,6 @@
 from selenium.webdriver import Chrome,ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
 from datetime import datetime
@@ -17,6 +15,7 @@ class Drive2InstaAuto:
     def __init__(self):
         self.__day = os.getenv('DAY')
         self.__file_id=os.getenv('FILE_ID')
+        self.__TAGS=os.getenv('TAG')
         self.__browser=None
         self.__JS_DROP_FILE = """
             var target=arguments[0],offsetX=arguments[1],offsetY=arguments[2],document=target.ownerDocument||document,window=document.defaultView||window;
@@ -25,12 +24,9 @@ class Drive2InstaAuto:
             evt.dataTransfer=dataTransfer;target.dispatchEvent(evt);});setTimeout(function(){document.body.removeChild(input);},25);};
             document.body.appendChild(input);return input;
         """
-        absolute_path = os.getenv('GITHUB_WORKSPACE')
-        # print(absolute_path)
-        self.__file_path=absolute_path+"/doggo.mp4"
+        self.__file_path=os.getenv('GITHUB_WORKSPACE')+"/doggo.mp4"
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
         
-
     def __get_file(self):
         try:
             URL = f"https://drive.google.com/uc?id={self.__file_id}"
@@ -49,16 +45,6 @@ class Drive2InstaAuto:
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--disable-gpu")
             chrome_options.add_argument("--no-sandbox")
-            # options = [ "--ignore-certificate-errors",
-            #         	"--headless",
-            #             "--disable-gpu",
-            #             "--window-size=1920,1200",
-            #             "--disable-extensions",
-            #             "--no-sandbox",
-            #             "--disable-dev-shm-usage"]
-            #             #'--remote-debugging-port=9222']
-            # for option in options:
-            #     chrome_options.add_argument(option)
             browser = Chrome(service=Service(driver_path),options=chrome_options)
             browser.implicitly_wait(5)
             browser.get(url)
@@ -84,12 +70,9 @@ class Drive2InstaAuto:
     
     def __upload_post(self):
         try:
-            # wait_time = 10
-            # time.sleep(2)
             self.__browser.find_element(By.XPATH,"//span[text()='Create']").click()
             time.sleep(1)
             element=self.__browser.find_element(By.XPATH,"//span[text()='Create']")
-            
             driver = element.parent
             file_input = driver.execute_script(self.__JS_DROP_FILE,element, 0, 0)
             time.sleep(2)
@@ -98,7 +81,7 @@ class Drive2InstaAuto:
             self.__browser.find_element(By.XPATH,"//button[text()='OK']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
-            self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(f"Day {self.__day} \n #dogs")
+            self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(f"Day {self.__day} \n He will stop crying after 1M followers \n {self.__TAGS} ")
             self.__browser.find_element(By.XPATH,"//div[text()='Share']").click()
             time.sleep(10)
             self.__browser.save_screenshot("screenshot.png")
