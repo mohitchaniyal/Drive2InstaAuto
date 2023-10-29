@@ -36,7 +36,7 @@ jobs:
       env:
           FILE_ID: ${{ secrets.FILE_ID }}
           DAY: ${{ vars.DAY }}
-          TAG: ${{vars.TAG}}
+          TAGS: ${{vars.TAGS}}
           # AGENCIES: ${{ secrets.AGENCIES }}
       run: |
         python main.py
@@ -48,19 +48,3 @@ jobs:
          git add ./screen*
          git commit -m "GitHub Actions Results added"
          git push
-
-    # - name: Commit files
-    #   run: |
-    #     git config --local user.email "${{ secrets.GIT_EMAIL }}"
-    #     git config --local user.name "${{ secrets.GIT_NAME }}"
-    #     git add .
-    #     git commit -m "Updated Proxies"
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Push changes
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
