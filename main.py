@@ -109,6 +109,7 @@ class Drive2InstaAuto:
     def _start_uploding_file(self):
         self.__initialize_browser()
         self.__login()
+        self.__get_file()
         self.__upload_post()
         time.sleep(5)
         self.__browser.close()
