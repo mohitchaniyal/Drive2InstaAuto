@@ -25,7 +25,9 @@ class Drive2InstaAuto:
             evt.dataTransfer=dataTransfer;target.dispatchEvent(evt);});setTimeout(function(){document.body.removeChild(input);},25);};
             document.body.appendChild(input);return input;
         """
-        self.__file_path="./doggo.mp4"
+        absolute_path = os.getenv('GITHUB_WORKSPACE')
+        print(absolute_path)
+        self.__file_path=absolute_path+"doggo.mp4"
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
         
 
