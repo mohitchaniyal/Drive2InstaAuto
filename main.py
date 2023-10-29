@@ -15,7 +15,7 @@ class Drive2InstaAuto:
     def __init__(self):
         self.__day = os.getenv('DAY')
         self.__file_id=os.getenv('FILE_ID')
-        self.__TAGS=os.getenv('TAG')
+        self.__tags=os.getenv('TAGS')
         self.__browser=None
         self.__JS_DROP_FILE = """
             var target=arguments[0],offsetX=arguments[1],offsetY=arguments[2],document=target.ownerDocument||document,window=document.defaultView||window;
@@ -81,7 +81,7 @@ class Drive2InstaAuto:
             self.__browser.find_element(By.XPATH,"//button[text()='OK']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
-            self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(f"Day {self.__day} \n He will stop crying after 1M followers \n {self.__TAGS} ")
+            self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(f"Day {self.__day.days} \n He will stop crying after 1M followers \n {self.__tags} ")
             self.__browser.find_element(By.XPATH,"//div[text()='Share']").click()
             time.sleep(20)
             self.__browser.save_screenshot("screenshot.png")
