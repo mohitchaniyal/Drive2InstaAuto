@@ -31,9 +31,9 @@ class Drive2InstaAuto:
 
     def __get_file(self):
         try:
-            URL = f"https://drive.google.com/uc?id={file_id}"
+            URL = f"https://drive.google.com/uc?id={self.__file_id}"
             response=requests.get(URL,stream=True)
-            with open("doggo.mp4","wb") as f:
+            with open(self.__file_path,"wb") as f:
                 f.write(response.content)
         except Exception as e:
             print(e)
@@ -73,8 +73,8 @@ class Drive2InstaAuto:
             for cookie in cookies:
                 self.__browser.add_cookie(cookie)
             self.__browser.get("https://www.instagram.com/")
-            time.sleep(5)
-            self.__browser.find_element(By.XPATH,"//button[text()='Not Now']").click()
+            time.sleep(2)
+            # self.__browser.find_element(By.XPATH,"//button[text()='Not Now']").click()
             return {"success":True}
         except Exception as e:
             self.__browser.save_screenshot("screenshot.png")
@@ -82,17 +82,17 @@ class Drive2InstaAuto:
     
     def __upload_post(self):
         try:
-            wait_time = 10
-            time.sleep(5)
+            # wait_time = 10
+            # time.sleep(2)
             self.__browser.find_element(By.XPATH,"//span[text()='Create']").click()
             time.sleep(1)
             element=self.__browser.find_element(By.XPATH,"//span[text()='Create']")
             
             driver = element.parent
             file_input = driver.execute_script(self.__JS_DROP_FILE,element, 0, 0)
-            time.sleep(5)
+            time.sleep(2)
             file_input.send_keys(self.__file_path)
-            time.sleep(5)
+            time.sleep(2)
             self.__browser.find_element(By.XPATH,"//button[text()='OK']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
