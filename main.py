@@ -84,10 +84,11 @@ class Drive2InstaAuto:
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(self.__caption)
-            time.sleep(5)
+            self.__browser.save_screenshot("screenshot.png")
+            time.sleep(10)
             self.__browser.find_element(By.XPATH,"//div[text()='Share']").click()
             time.sleep(20)
-            self.__browser.save_screenshot("screenshot.png")
+         
             return {"success":True}
         except Exception as e:
             self.__browser.save_screenshot("screenshot.png")
