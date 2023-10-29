@@ -36,7 +36,7 @@ jobs:
       env:
           FILE_ID: ${{ secrets.FILE_ID }}
           DAY: ${{ vars.DAY }}
-          TAG: ${{vats.TAG}}
+          TAG: ${{vars.TAG}}
           # AGENCIES: ${{ secrets.AGENCIES }}
       run: |
         python main.py
