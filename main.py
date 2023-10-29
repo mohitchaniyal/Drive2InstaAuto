@@ -82,6 +82,7 @@ class Drive2InstaAuto:
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(f"Day {self.__day.days} \n He will stop crying after 1M followers \n {self.__tags} ")
+            time.sleep(2)
             self.__browser.find_element(By.XPATH,"//div[text()='Share']").click()
             time.sleep(20)
             self.__browser.save_screenshot("screenshot.png")
