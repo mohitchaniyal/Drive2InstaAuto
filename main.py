@@ -27,7 +27,7 @@ class Drive2InstaAuto:
         """
         self.__file_path=os.getenv('GITHUB_WORKSPACE')+"/doggo.mp4"
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
-        self.__caption=f"Day {self.__day.days} \n He will stop crying after 1M followers \n {self.__tags}"
+        self.__caption=f"Day {self.__day.days} \n He will stop crying after 1M followers "
         
     def __get_file(self):
         try:
