@@ -39,6 +39,7 @@ jobs:
           TAGS: ${{vars.TAGS}}
           # AGENCIES: ${{ secrets.AGENCIES }}
       run: |
+        echo "$TAGS"
         python main.py
 
     - name: Commit and Push The Results From Python Selenium Action
