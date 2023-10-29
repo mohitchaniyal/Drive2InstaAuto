@@ -27,7 +27,6 @@ class Drive2InstaAuto:
         self.__file_path=os.getenv('GITHUB_WORKSPACE')+"/doggo.mp4"
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
         self.__caption=f"Day {self.__day.days} \nHe will stop crying after 1M followers \n{self.__tags} \n"
-        print(self.__caption)
         
     def __get_file(self):
         try:
@@ -83,6 +82,7 @@ class Drive2InstaAuto:
             self.__browser.find_element(By.XPATH,"//button[text()='OK']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
+            time.sleep(1)
             self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(self.__caption)
             self.__browser.save_screenshot("screenshot.png")
             time.sleep(2)
