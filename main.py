@@ -15,7 +15,7 @@ class Drive2InstaAuto:
     def __init__(self):
         self.__day = os.getenv('DAY')
         self.__file_id=os.getenv('FILE_ID')
-        self.__tags=f"""{os.getenv('TAGS')}"""
+        self.__tags=os.getenv('TAGS')
         print(self.__tags)
         self.__browser=None
         self.__JS_DROP_FILE = """
@@ -27,6 +27,7 @@ class Drive2InstaAuto:
         """
         self.__file_path=os.getenv('GITHUB_WORKSPACE')+"/doggo.mp4"
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
+        self.__caption=f"Day {self.__day.days} \n He will stop crying after 1M followers \n {self.__tags}"
         
     def __get_file(self):
         try:
@@ -82,8 +83,8 @@ class Drive2InstaAuto:
             self.__browser.find_element(By.XPATH,"//button[text()='OK']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
             self.__browser.find_element(By.XPATH,"//div[text()='Next']").click()
-            self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(f"Day {self.__day.days} \n He will stop crying after 1M followers \n {self.__tags} ")
-            time.sleep(2)
+            self.__browser.find_element(By.XPATH,"//div[text()='Write a caption...']/..//p").send_keys(self.__caption)
+            time.sleep(5)
             self.__browser.find_element(By.XPATH,"//div[text()='Share']").click()
             time.sleep(20)
             self.__browser.save_screenshot("screenshot.png")
