@@ -25,7 +25,7 @@ class Drive2InstaAuto:
             evt.dataTransfer=dataTransfer;target.dispatchEvent(evt);});setTimeout(function(){document.body.removeChild(input);},25);};
             document.body.appendChild(input);return input;
         """
-        self.__file_path="doggo.mp4"
+        self.__file_path="./doggo.mp4"
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
         
 
@@ -33,7 +33,7 @@ class Drive2InstaAuto:
         try:
             URL = f"https://drive.google.com/uc?id={self.__file_id}"
             response=requests.get(URL,stream=True)
-            with open(self.__file_path,"wb") as f:
+            with open("doggo.mp4","wb") as f:
                 f.write(response.content)
         except Exception as e:
             print(e)
