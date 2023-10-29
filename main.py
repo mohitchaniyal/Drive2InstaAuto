@@ -26,8 +26,8 @@ class Drive2InstaAuto:
             document.body.appendChild(input);return input;
         """
         absolute_path = os.getenv('GITHUB_WORKSPACE')
-        print(absolute_path)
-        self.__file_path=absolute_path+"doggo.mp4"
+        # print(absolute_path)
+        self.__file_path=absolute_path+"/doggo.mp4"
         self.__day=datetime.today().date()-datetime.strptime(self.__day,"%d-%m-%Y").date()
         
 
